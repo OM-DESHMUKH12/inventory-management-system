@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="container">
+        <h2>Delete Item</h2>
+        <p>Select an item to delete:</p>
+        <form method="POST">
+            <label for="item_id">Item:</label>
+            <select name="item_id" id="item_id" required>
+                {% for item in items %}
+                    <option value="{{ item['item_id'] }}">{{ item['name'] }} (ID: {{ item['item_id'] }})</option>
+                {% endfor %}
+            </select>
+            <br>
+            <button type="submit">Delete</button>
+        </form>
+        <br>
+        <a href="{{ url_for('index') }}">Cancel</a>
+    </div>
+</body>
+</html>
+
